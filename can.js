@@ -109,12 +109,14 @@ function spawnEnemies() {
 let animationId;
 function animate() {
     animationId = requestAnimationFrame(animate);
-    ctx.save();
-    ctx.beginPath();
-    ctx.fillStyle = 'rgba(0,0,0,0.3)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.restore();
 
+    ctx.beginPath();
+    const gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 100, canvas.width / 2, canvas.height / 2, canvas.width / 2);
+    gradient.addColorStop(0, "#17002e");
+    gradient.addColorStop(0.5, "#050108");
+    gradient.addColorStop(1, "#050108");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
     bullets.forEach((bullet, i) => {
