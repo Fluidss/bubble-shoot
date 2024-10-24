@@ -34,7 +34,7 @@ let mouseY = 0;
 window.addEventListener('mousemove', (e) => {
     mouseX = e.pageX;
     mouseY = e.pageY;
-    angle = Math.atan2(e.y - cy, e.x - cx);
+    //angle = Math.atan2(e.y - cy, e.x - cx);
 });
 window.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
@@ -66,8 +66,8 @@ window.addEventListener("resize", ()=>{
     init();
 });
 window.addEventListener('click', (e) => {
-    let x = player.x + player.radius * Math.cos(player.angle);
-    let y = player.y + player.radius * Math.sin(player.angle);
+    let x = player.x;
+    let y = player.y;
     let angle = Math.atan2(e.clientY - canvas.height / 2, e.clientX - canvas.width / 2);
     let velocity = {
         x: Math.cos(angle) * 10,
@@ -79,18 +79,20 @@ window.addEventListener('click', (e) => {
 
 function spawnEnemies() {
     setInterval(() => {
-        let radius = random(20, 40);
+        let radius = random(20,50);
+		let speed = random (0.5 , 1);
         let x = Math.random() < 0.5 ? 0 - radius : canvas.width + radius;
         let y = Math.random() * canvas.height;
-        let angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x);
+        let angle = Math.atan2(player.y - y, player.x - x);
         let color = `rgba(${parseInt(Math.random() * 255)},${parseInt(Math.random() * 255)},${parseInt(Math.random() * 255)},1)`;
         let velocity = {
-            x: Math.cos(angle),
-            y: Math.sin(angle),
+            x: Math.cos(angle) * speed,
+            y: Math.sin(angle)* speed,
         }
-        let lineWidth = random(0, 20);
-        enemies.push(new Enemies(x, y, velocity, radius, color, lineWidth));
-    }, 800);
+		let lineWidth = random(10,20);
+		let colorBorder = `rgba(${parseInt(Math.random() * 255)},${parseInt(Math.random() * 255)},${parseInt(Math.random() * 255)},1)`;
+        enemies.push(new Enemies(x, y, velocity, radius, color,lineWidth,colorBorder));
+    }, 1e3);
 }
 let animationId;
 function animate() {
