@@ -35,7 +35,7 @@ class Enemies {
         // Основной круг
         ctx.beginPath();
         ctx.lineWidth = this.lineWidth;
-        ctx.strokeStyle = '#7fffd4';
+        ctx.strokeStyle = this.color;
         ctx.fillStyle = this.color;
         ctx.arc(0, 0, this.radius + pulseFactor, 0, 2 * Math.PI);
         ctx.fill();
@@ -81,9 +81,7 @@ class Enemies {
         this.pulseSize += this.pulseSpeed;
         this.glowIntensity += this.glowSpeed;
         this.draw(ctx);
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
+        this.x += this.velocity.x ;
+        this.y += this.velocity.y ;
     }
 }
-
-export { Enemies }; 
