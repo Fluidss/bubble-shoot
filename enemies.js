@@ -85,3 +85,4 @@ class Enemies {
         this.y += this.velocity.y ;
     }
 }
+export { Enemies }; 
