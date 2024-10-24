@@ -8,7 +8,6 @@ class Player {
         this.velocity = 1;
     }
     draw(ctx) {
-
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
@@ -22,22 +21,20 @@ class Player {
         ctx.stroke();
         ctx.fill();
 
-
-        // Добавляем индикатор направления
+      
         ctx.beginPath();
         ctx.moveTo(0 + this.radius, 0);
         ctx.lineTo(this.radius * 2, 0);
-        ctx.strokeStyle = 'green';
+        ctx.strokeStyle = 'yellow';
         ctx.lineWidth = 12;
         ctx.stroke();
-        ctx.restore();
 
+        ctx.restore();
     }
     update(ctx, mouseX, mouseY) {
-        // Вычисляем угол между игроком и мышью
+    
         this.angle = Math.atan2(mouseY - this.y, mouseX - this.x);
         this.draw(ctx);
     }
 }
-
 export { Player };
