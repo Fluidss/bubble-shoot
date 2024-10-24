@@ -7,13 +7,11 @@ class Particle {
         this.color = color;
     }
     draw(ctx) {
-        ctx.save();
         ctx.beginPath();
         ctx.fillStyle = this.color;
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         ctx.stroke();
         ctx.fill();
-        ctx.restore();
     }
     update(ctx) {
         this.draw(ctx);
