@@ -6,7 +6,6 @@ import { Enemies } from "./enemies.js";
 // window.addEventListener('mousemove', (e) => {
 //     mouse.x = e.pageX;
 //     mouse.y = e.pageY;
-//     console.log('mouseX', mouse.x);
 // })
 const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -49,36 +48,23 @@ window.addEventListener('keydown', (e) => {
         }
     }
 });
-
-
-let player = new Player(canvas.width / 2, canvas.height / 2, 30, 'green');
+let player = new Player(canvas.width / 2, canvas.height / 2, 30, '#30d5c8');
 let bullets = [];
 let enemies = [];
 let points = 0;
 function init() {
     mouseX = 0;
     mouseY = 0;
-    player = new Player(canvas.width / 2, canvas.height / 2, 30, 'green');
+    player = new Player(canvas.width / 2, canvas.height / 2, 30, '#30d5c8');
     bullets = [];
     enemies = [];
     points = 0;
 }
-
-
-
-ctx.beginPath();
-ctx.fillStyle = "red";
-ctx.arc(posX, posY, 20, 0, 2 * Math.PI);
-ctx.stroke();
-ctx.fill();
-
-ctx.beginPath(); // Начинает новый путь
-ctx.moveTo(posX, posY); // Передвигает перо в точку (30, 50)
-ctx.lineTo(posX + mouseX * Math.cos(angle), posY + mouseY * Math.sin(angle)); // Рисует линию до точки (150, 100)
-ctx.stroke(); // Отображает путь
-
-
-
+window.addEventListener("resize", ()=>{
+   ctx.canvas.height = window.innerHeight;
+   ctx.canvas.width  = window.innerWidth;
+    init();
+});
 window.addEventListener('click', (e) => {
     let x = player.x + player.radius * Math.cos(player.angle);
     let y = player.y + player.radius * Math.sin(player.angle);
